@@ -1,9 +1,16 @@
 import { GoodsList } from './GoodsList';
 import { ShopsItem } from './ShopsItem';
 
+import { useAppDispatch } from '../../hooks';
+import { MOCKED_SHOPS } from '../../mock/shops';
+import { getShops } from '../../store/shops/shopsSlice';
 import styles from './Shops.module.scss';
 
 const Shops = () => {
+    const dispatch = useAppDispatch();
+
+    dispatch(getShops(MOCKED_SHOPS));
+
     return (
         <div className={styles.shop}>
             <div className={styles.shops}>

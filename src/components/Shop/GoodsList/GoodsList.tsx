@@ -15,7 +15,6 @@ const GoodsList = () => {
             <GoodsItem />
             <GoodsItem />
             <GoodsItem />
-
         </div>
     );
 };
