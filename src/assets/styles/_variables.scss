@@ -1,0 +1,54 @@
+$primary-font: 'Source Sans Pro';
+
+$header-height: 60px;
+$footer-height: 60px;
+// font-weight
+$light: 300;
+$regular: 400;
+$semibold: 600;
+$bold: 700;
+$black: 900;
+// Font size
+$font-xs: 12px;
+$font-sm: 14px;
+$font-st: 16px;
+$font-md: 18px;
+$font-lg: 20px;
+$font-xl: 24px;
+// Font colors
+$primary-font-color-light: #474a59;
+$primary-font-color-dark: #333333;
+$secondary-font-color: #ffffff;
+$link-font-color: #5681ee;
+$disabled-font-color: #858997;
+// Background colors
+$primary-bg-color-light: #f5f6fa;
+$primary-bg-color-dark: #303240;
+$secondary-bg-color-light: #ffffff;
+$highlighted-item-color: #e6ebf3;
+// Border colors
+$primary-border-color: #ced0db;
+$secondary-border-color: #87888f;
+// Button colors
+$success-button-color: #67a300;
+$secondary-button-color: #e1e3eb;
+$primary-button-color: #009ecc;
+$danger-button-color: #c82333;
+
+// Icomoon styles
+
+$icomoon-font-family: 'icomoon' !default;
+$icomoon-font-path: 'assets/fonts/icomoon' !default;
+
+$icon-close: '\e902';
+$icon-add-circle: '\e903';
+$icon-edit: '\e906';
+$icon-search: '\e907';
+$icon-delete: '\e908';
+$icon-calendar: '\e909';
+$icon-clock: '\e90a';
+$icon-user: '\e90b';
+$icon-star-emprty: '\e90c';
+$icon-star-full: '\e90d';
+$icon-login: '\e901';
+$icon-logout: '\e900';

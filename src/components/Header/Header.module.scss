@@ -1,0 +1,27 @@
+@import '../../assets/styles/variables';
+
+.navigation {
+    max-width: 1440px;
+    height: $header-height;
+    padding: 0 60px;
+    margin: 0 auto;
+    &List {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: $font-md;
+        font-weight: $semibold;
+    }
+    &Item {
+        min-width: 100px;
+    }
+    a {
+        color: $disabled-font-color;
+        &:hover {
+            color: $primary-font-color-light;
+            transition: color 0.5s ease;
+        }
+    }
+}

@@ -1,0 +1,64 @@
+@import '../../../assets/styles/variables';
+
+.cartItem {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 200px;
+    grid-template-rows: 190px;
+    gap: 40px;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    &Image {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        img {
+            height: 100%;
+            width: 100%;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+    }
+    &Info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch;
+        text-align: center;
+    }
+    &Title {
+        font-size: $font-md;
+        font-weight: $semibold;
+        margin: 50px 0 5px;
+    }
+    &Price {
+        flex-grow: 1;
+    }
+    &Quantity {
+        margin-bottom: 15px;
+        input {
+            text-align: center;
+        }
+    }
+    &Delete {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: $font-lg;
+        color: $disabled-font-color;
+        cursor: pointer;
+        &:hover {
+            background-color: $primary-bg-color-light;
+            color: $primary-font-color-light;
+            border-radius: 4px;
+            transition: all 0.6s ease-in-out;
+        }
+    }
+}

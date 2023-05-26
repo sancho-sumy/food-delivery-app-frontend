@@ -1,0 +1,9 @@
+.goodsList {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-auto-rows: 300px;
+    gap: 20px;
+    justify-content: center;
+}
