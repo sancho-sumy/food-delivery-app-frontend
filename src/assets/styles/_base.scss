@@ -60,6 +60,16 @@ textarea:focus {
     border: 1.5px solid $secondary-border-color;
 }
 
+a {
+    color: $primary-font-color-light;
+    opacity: 1;
+}
+
+.active button {
+    opacity: 1;
+    transition: opacity 0.6s ease-in-out;
+}
+
 a.active {
     color: $primary-font-color-dark;
     text-decoration: underline;

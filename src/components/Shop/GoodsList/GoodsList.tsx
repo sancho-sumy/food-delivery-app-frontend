@@ -1,18 +1,17 @@
+import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../../../hooks';
-import { shopSelector } from '../../../store/shopsSlice';
+import { selectShops } from '../../../store/shopsSlice';
 import { GoodsItem } from './GoodsItem';
 
 import styles from './GoodsList.module.scss';
 
-interface Props {
-    selectedShopId: string;
-}
+const GoodsList = () => {
+    const { shopId } = useParams();
 
-const GoodsList = ({ selectedShopId }: Props) => {
-    const shops = useAppSelector(shopSelector);
+    const shops = useAppSelector(selectShops);
 
     const goodsList = shops
-        .find((shop) => shop.id === selectedShopId)
+        .find((shop) => shop.id === shopId)
         ?.menu?.map(({ id, name, price }) => {
             return <GoodsItem key={id} id={id} title={name} price={price} />;
         });

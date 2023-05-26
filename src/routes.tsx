@@ -4,6 +4,7 @@ import { Cart } from './components/Cart';
 import { ErrorPage } from './components/ErrorPage';
 import { RootLayout } from './components/RootLayout';
 import { Shops, shopsLoader } from './components/Shop';
+import { GoodsList } from './components/Shop/GoodsList';
 
 const routes = [
     {
@@ -14,8 +15,9 @@ const routes = [
             { index: true, loader: () => redirect('/shop') },
             {
                 path: 'shop',
+                element: <Shops />,
                 loader: shopsLoader,
-                children: [{ index: true, element: <Shops /> }],
+                children: [{ path: ':shopId', element: <GoodsList /> }],
             },
             {
                 path: 'cart',

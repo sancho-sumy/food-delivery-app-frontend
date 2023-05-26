@@ -1,13 +1,11 @@
-import { useEffect, useState } from 'react';
-
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { MOCKED_SHOPS } from '../../mock/shops';
-import { getShops, shopSelector } from '../../store/shopsSlice';
+import { getShops, selectCurrentShop, selectShops, setShop } from '../../store/shopsSlice';
 import { store } from '../../store/store';
-import { GoodsList } from './GoodsList';
 import { ShopsItem } from './ShopsItem';
 
-import { Goods } from '../../schemas';
+import { useEffect } from 'react';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import styles from './Shops.module.scss';
 
 export const loader = async () => {
@@ -16,27 +14,28 @@ export const loader = async () => {
 };
 
 const Shops = () => {
-    const [shop, setShop] = useState('');
-
-    const shops = useAppSelector(shopSelector);
+    const dispatch = useAppDispatch();
+    const shops = useAppSelector(selectShops);
+    const currentShop = useAppSelector(selectCurrentShop);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        if (shops.length > 0) {
-            if (shops[0].id && shops[0].menu) {
-                setShop(shops[0].id);
-            }
-        }
-    }, [shops]);
+        navigate(`${currentShop}`);
+    }, [currentShop, navigate]);
 
     const onShopClickHandler = (shopId: string) => {
         if (shopId) {
-            setShop(shopId);
+            dispatch(setShop(shopId));
         }
     };
 
     const shopsList = shops.map(({ id, name }) => {
         if (id) {
-            return <ShopsItem key={id} name={name} onClick={onShopClickHandler.bind(this, id)} />;
+            return (
+                <NavLink to={id} key={id}>
+                    <ShopsItem name={name} onClick={onShopClickHandler.bind(this, id)} />
+                </NavLink>
+            );
         }
         return;
     });
@@ -48,7 +47,7 @@ const Shops = () => {
                 <ul className={styles.shopsList}>{shopsList}</ul>
             </div>
             <div className={styles.itemsList}>
-                <GoodsList selectedShopId={shop} />
+                <Outlet />
             </div>
         </div>
     );
