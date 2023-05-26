@@ -3,7 +3,7 @@ import { createBrowserRouter, redirect } from 'react-router-dom';
 import { Cart } from './components/Cart';
 import { ErrorPage } from './components/ErrorPage';
 import { RootLayout } from './components/RootLayout';
-import { Shops } from './components/Shop';
+import { Shops, shopsLoader } from './components/Shop';
 
 const routes = [
     {
@@ -14,6 +14,7 @@ const routes = [
             { index: true, loader: () => redirect('/shop') },
             {
                 path: 'shop',
+                loader: shopsLoader,
                 children: [{ index: true, element: <Shops /> }],
             },
             {

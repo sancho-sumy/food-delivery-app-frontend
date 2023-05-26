@@ -1,10 +1,17 @@
+import { MouseEventHandler } from 'react';
+
 import styles from './ShopsItem.module.scss';
 
-const ShopsItem = () => {
+interface Props {
+    name: string;
+    onClick: MouseEventHandler<HTMLButtonElement>;
+}
+
+const ShopsItem = ({ name, onClick }: Props) => {
     return (
-        <div className={styles.shopItem}>
-            <h3 className={styles.shopTitle}>Mc Donny</h3>
-        </div>
+        <button className={styles.shopItem} onClick={onClick}>
+            <h3 className={styles.shopTitle}>{name}</h3>
+        </button>
     );
 };
 export default ShopsItem;

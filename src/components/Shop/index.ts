@@ -1,1 +1,1 @@
-export { default as Shops } from './Shops';
+export { default as Shops, loader as shopsLoader } from './Shops';

@@ -1,17 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import type { RootState } from './store';
-
-export interface Goods {
-    id: string;
-    name: string;
-    price: number;
-}
-
-export interface Shop {
-    id: string;
-    name: string;
-    menu: Goods[];
-}
+import { Shop } from '../schemas';
 
 export interface ShopsState {
     shops: Shop[];

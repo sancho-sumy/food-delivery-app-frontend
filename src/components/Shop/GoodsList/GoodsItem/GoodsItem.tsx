@@ -1,7 +1,17 @@
 import { Button } from '../../../../common';
 import styles from './GoodsItem.module.scss';
 
-const GoodsItem = () => {
+interface Props {
+    id: string;
+    title: string;
+    price: number;
+}
+
+const GoodsItem = ({ id, title, price }: Props) => {
+    const onAddToCartHandler = (goodsId: string) => {
+        console.log(goodsId);
+    };
+
     return (
         <div className={styles.goodsItem}>
             <div className={styles.goodsItemImage}>
@@ -10,10 +20,10 @@ const GoodsItem = () => {
                     alt='Burger'
                 />
             </div>
-            <div className={styles.goodsItemTitle}>Big Fat Burger</div>
+            <div className={styles.goodsItemTitle}>{title}</div>
             <div className={styles.goodsItemControls}>
-                <div className={styles.goodsItemPrice}>$ 9.99</div>
-                <Button buttonText={'Add to cart'} />
+                <div className={styles.goodsItemPrice}>$ {price}</div>
+                <Button buttonText={'Add to cart'} onClick={onAddToCartHandler.bind(this, id)} />
             </div>
         </div>
     );
