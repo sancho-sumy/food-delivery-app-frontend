@@ -11,7 +11,7 @@ const routes = [
         element: <RootLayout />,
         errorElement: <ErrorPage />,
         children: [
-            { index: 'true', loader: () => redirect('/shop') },
+            { index: true, loader: () => redirect('/shop') },
             {
                 path: 'shop',
                 children: [{ index: true, element: <Shops /> }],
