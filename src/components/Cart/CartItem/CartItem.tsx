@@ -1,46 +1,52 @@
-import { useAppDispatch } from '../../../hooks';
-import { CartItemI } from '../../../schemas';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 
 import {
     decreaseItemQuantity,
     increaseItemQuantity,
     removeItemFromCart,
+    selectCartItems,
 } from '../../../store/cartSlice';
+import { setActiveShop } from '../../../store/shopsSlice';
 import styles from './CartItem.module.scss';
 
 interface Props {
-    item: CartItemI;
+    _id: string;
+    name: string;
+    imageURL: string;
+    quantity: number;
+    totalPrice: number;
 }
 
-const CartItem = ({ item }: Props) => {
+const CartItem = ({ _id, name, imageURL, quantity, totalPrice }: Props) => {
     const dispatch = useAppDispatch();
+    const cart = useAppSelector(selectCartItems);
 
     const onDeleteFromCartHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        dispatch(removeItemFromCart(item.id));
+        dispatch(removeItemFromCart(_id));
+        if (cart.length === 1) {
+            dispatch(setActiveShop(''));
+        }
     };
 
     const onIncreaseQuantity = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        dispatch(increaseItemQuantity(item.id));
+        dispatch(increaseItemQuantity(_id));
     };
 
     const onDecreaseQuantity = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        dispatch(decreaseItemQuantity(item.id));
+        dispatch(decreaseItemQuantity(_id));
     };
 
     return (
         <div className={styles.cartItem}>
             <div className={styles.cartItemImage}>
-                <img
-                    src='https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YnVyZ2VyfGVufDB8fDB8fHww&w=1000&q=80'
-                    alt='Imaddge'
-                />
+                <img src={imageURL} alt={name} />
             </div>
             <div className={styles.cartItemInfo}>
-                <h4 className={styles.cartItemTitle}>{item.name}</h4>
-                <p className={styles.cartItemPrice}>Price: {item.totalPrice.toFixed(2)}</p>
+                <h4 className={styles.cartItemTitle}>{name}</h4>
+                <p className={styles.cartItemPrice}>Price: {totalPrice.toFixed(2)}</p>
                 <div className={styles.cartItemQuantity}>
                     <button
                         className={styles.cartItemQuantityControls}
@@ -48,7 +54,7 @@ const CartItem = ({ item }: Props) => {
                     >
                         <span className='icon-remove-circle-filled'></span>
                     </button>
-                    <div className={styles.cartItemQuantityText}>{item.quantity}</div>
+                    <div className={styles.cartItemQuantityText}>{quantity}</div>
                     <button
                         className={styles.cartItemQuantityControls}
                         onClick={onIncreaseQuantity}

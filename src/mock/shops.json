@@ -4,16 +4,16 @@
             "id": "f7e86c2d-70a6-4a6c-b74a-3b2b6d227ec7",
             "name": "The Bistro",
             "menu": [
-                {
-                    "id": "9279c57a-4568-46db-a33f-7f6a9b10583f",
-                    "name": "Classic Margherita Pizza",
-                    "price": 12.99
-                },
-                {
-                    "id": "0e045828-5a71-4d11-b52f-8db6c5679b6b",
-                    "name": "Grilled Salmon with Lemon Butter",
-                    "price": 18.99
-                },
+                // {
+                //     "id": "9279c57a-4568-46db-a33f-7f6a9b10583f",
+                //     "name": "Classic Margherita Pizza",
+                //     "price": 12.99
+                // },
+                // {
+                //     "id": "0e045828-5a71-4d11-b52f-8db6c5679b6b",
+                //     "name": "Grilled Salmon with Lemon Butter",
+                //     "price": 18.99
+                // },
                 {
                     "id": "fa3be70e-239f-429e-89c5-07c15182a768",
                     "name": "Spaghetti Carbonara",

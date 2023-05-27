@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Cart, Goods } from '../schemas';
+import { Cart, CartItem } from '../schemas';
 import type { RootState } from './store';
 
 const initialState: Cart = {
@@ -17,18 +17,17 @@ export const cartSlice = createSlice({
             state.orderPrice = initialState.orderPrice;
             state.totalQuantity = initialState.totalQuantity;
         },
-        addItemToCart(state, action: PayloadAction<Goods>) {
+        addItemToCart(state, action: PayloadAction<CartItem>) {
             const newItem = action.payload;
-            const existingItem = state.items.find((item) => item.id === newItem.id);
+            const existingItem = state.items.find((item) => item.itemId === newItem.itemId);
             state.totalQuantity++;
             state.orderPrice += newItem.price;
             if (!existingItem) {
                 state.items.push({
-                    id: newItem.id,
+                    itemId: newItem.itemId,
                     price: newItem.price,
                     quantity: 1,
                     totalPrice: newItem.price,
-                    name: newItem.name,
                 });
             } else {
                 existingItem.quantity = existingItem.quantity + 1;
@@ -38,7 +37,7 @@ export const cartSlice = createSlice({
 
         increaseItemQuantity(state, action: PayloadAction<string>) {
             const id = action.payload;
-            const existingItem = state.items.find((item) => item.id === id);
+            const existingItem = state.items.find((item) => item.itemId === id);
             if (existingItem) {
                 state.totalQuantity++;
                 state.orderPrice += existingItem.price;
@@ -51,7 +50,7 @@ export const cartSlice = createSlice({
 
         decreaseItemQuantity(state, action: PayloadAction<string>) {
             const id = action.payload;
-            const existingItem = state.items.find((item) => item.id === id);
+            const existingItem = state.items.find((item) => item.itemId === id);
             if (existingItem && existingItem.quantity > 1) {
                 state.totalQuantity--;
                 state.orderPrice -= existingItem.price;
@@ -64,11 +63,11 @@ export const cartSlice = createSlice({
 
         removeItemFromCart(state, action) {
             const id = action.payload;
-            const existingItem = state.items.find((item) => item.id === id);
+            const existingItem = state.items.find((item) => item.itemId === id);
             if (existingItem) {
                 state.totalQuantity -= existingItem?.quantity;
                 state.orderPrice -= existingItem?.totalPrice;
-                state.items = state.items.filter((item) => item.id !== id);
+                state.items = state.items.filter((item) => item.itemId !== id);
             } else {
                 return;
             }

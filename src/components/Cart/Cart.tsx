@@ -5,11 +5,15 @@ import { CartItem } from './CartItem';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { orderSchema } from '../../schemas/order';
+import { addOrderRequest } from '../../services/cart';
 import { setAlert } from '../../store/alertSlice';
+import { selectItems } from '../../store/itemsSlice';
+import { setActiveShop } from '../../store/shopsSlice';
 import styles from './Cart.module.scss';
 
 const Cart = () => {
     const cart = useAppSelector(selectCart);
+    const items = useAppSelector(selectItems);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -27,14 +31,18 @@ const Cart = () => {
             return;
         }
 
-        const validatedCourse = await orderSchema
+        const validatedOrder = await orderSchema
             .validate(
                 {
-                    name: name,
-                    email: email,
-                    phone: phone,
-                    address: address,
+                    info: {
+                        name: name,
+                        email: email,
+                        phone: phone,
+                        address: address,
+                    },
                     items: [...cart.items],
+                    orderPrice: cart.orderPrice,
+                    totalQuantity: cart.totalQuantity,
                 },
                 { abortEarly: false },
             )
@@ -43,16 +51,30 @@ const Cart = () => {
                 dispatch(setAlert({ messages: [...messages], type: 'error' }));
             });
 
-        if (validatedCourse) {
-            console.log('order palced', validatedCourse);
+        if (validatedOrder) {
+            addOrderRequest(validatedOrder);
             dispatch(clearCart());
             dispatch(setAlert({ messages: ['Order have been placed!'], type: 'success' }));
+            dispatch(setActiveShop(''));
             navigate('/shop');
         }
     };
 
-    const cartItem = cart.items.map((item) => {
-        return <CartItem key={item.id} item={item} />;
+    const cartItem = cart.items.map((cartItem) => {
+        const selectedItem = items.find((item) => item._id === cartItem.itemId);
+
+        if (selectedItem) {
+            return (
+                <CartItem
+                    key={cartItem.itemId}
+                    _id={cartItem.itemId}
+                    name={selectedItem.name}
+                    imageURL={selectedItem.imageURL}
+                    quantity={cartItem.quantity}
+                    totalPrice={cartItem.totalPrice}
+                />
+            );
+        }
     });
 
     return (

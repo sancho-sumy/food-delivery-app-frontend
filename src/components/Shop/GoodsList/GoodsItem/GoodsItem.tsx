@@ -1,8 +1,9 @@
 import { Button } from '../../../../common';
-import { useAppDispatch } from '../../../../hooks';
-import { Goods } from '../../../../schemas';
+import { useAppDispatch, useAppSelector } from '../../../../hooks';
+import { CartItem } from '../../../../schemas';
 import { setAlert } from '../../../../store/alertSlice';
-import { addItemToCart } from '../../../../store/cartSlice';
+import { addItemToCart, selectCart } from '../../../../store/cartSlice';
+import { setActiveShop } from '../../../../store/shopsSlice';
 
 import styles from './GoodsItem.module.scss';
 
@@ -10,21 +11,25 @@ interface Props {
     id: string;
     title: string;
     price: number;
-    imageURL: string | undefined;
+    imageURL: string;
+    shopId: string;
 }
 
-const GoodsItem = ({ id, title, price, imageURL }: Props) => {
+const GoodsItem = ({ id, title, price, imageURL, shopId }: Props) => {
+    const cart = useAppSelector(selectCart);
     const dispatch = useAppDispatch();
 
     const onAddToCartHandler = () => {
-        const newItem: Goods = {
-            id: id,
+        const newItem: CartItem = {
+            itemId: id,
             price: price,
             name: title,
             imageURL: imageURL,
         };
         dispatch(addItemToCart(newItem));
+        dispatch(setActiveShop(shopId));
         dispatch(setAlert({ messages: [`${newItem.name} added to cart!`], type: 'success' }));
+        localStorage.setItem('cart', JSON.stringify({ items: [...cart.items] }));
     };
 
     return (

@@ -1,3 +1,3 @@
 export * from './cart';
-export * from './goods';
+export * from './item';
 export * from './shop';

@@ -13,7 +13,11 @@
         cursor: pointer;
         opacity: 0.9;
         box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
-        &:hover {
+        &:disabled {
+            cursor: auto;
+            opacity: 0.5;
+        }
+        &:hover:enabled {
             background-color: #fca89f;
             transition: background-color 0.5s ease;
         }

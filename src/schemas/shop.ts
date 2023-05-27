@@ -1,7 +1,4 @@
-import { Goods } from '.';
-
 export interface Shop {
-    id?: string;
+    _id?: string;
     name: string;
-    menu?: Goods[];
 }
