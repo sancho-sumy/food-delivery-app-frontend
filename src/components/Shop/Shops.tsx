@@ -47,6 +47,9 @@ const Shops = () => {
                 <ul className={styles.shopsList}>{shopsList}</ul>
             </div>
             <div className={styles.itemsList}>
+                {!currentShop && (
+                    <div className={styles.itemsListEmpty}>Please select shop from the list.</div>
+                )}
                 <Outlet />
             </div>
         </div>

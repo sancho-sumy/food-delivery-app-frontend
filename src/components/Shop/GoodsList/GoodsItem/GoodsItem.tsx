@@ -1,24 +1,33 @@
 import { Button } from '../../../../common';
+import { useAppDispatch } from '../../../../hooks';
+import { Goods } from '../../../../schemas';
+import { addItemToCart } from '../../../../store/cartSlice';
 import styles from './GoodsItem.module.scss';
 
 interface Props {
     id: string;
     title: string;
     price: number;
+    imageURL: string | undefined;
 }
 
-const GoodsItem = ({ id, title, price }: Props) => {
-    const onAddToCartHandler = (goodsId: string) => {
-        console.log(goodsId);
+const GoodsItem = ({ id, title, price, imageURL }: Props) => {
+    const dispatch = useAppDispatch();
+
+    const onAddToCartHandler = () => {
+        const newItem: Goods = {
+            id: id,
+            price: price,
+            name: title,
+            imageURL: imageURL,
+        };
+        dispatch(addItemToCart(newItem));
     };
 
     return (
         <div className={styles.goodsItem}>
             <div className={styles.goodsItemImage}>
-                <img
-                    src='https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YnVyZ2VyfGVufDB8fDB8fHww&w=1000&q=80'
-                    alt='Burger'
-                />
+                <img src={imageURL} alt={title} />
             </div>
             <div className={styles.goodsItemTitle}>{title}</div>
             <div className={styles.goodsItemControls}>

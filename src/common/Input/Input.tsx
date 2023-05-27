@@ -4,8 +4,8 @@ interface Props {
     id: string;
     name: string;
     type?: string;
-    defaultValue?: string;
-    value?: string;
+    defaultValue?: string | number;
+    value?: string | number;
     placeholderText?: string;
     labelText?: string;
     onChange?: ChangeEventHandler<HTMLInputElement>;

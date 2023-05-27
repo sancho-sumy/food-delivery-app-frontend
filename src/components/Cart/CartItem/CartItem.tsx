@@ -1,7 +1,35 @@
-import { Input } from '../../../common';
+import { useAppDispatch } from '../../../hooks';
+import { CartItemI } from '../../../schemas';
+
+import {
+    decreaseItemQuantity,
+    increaseItemQuantity,
+    removeItemFromCart,
+} from '../../../store/cartSlice';
 import styles from './CartItem.module.scss';
 
-const CartItem = () => {
+interface Props {
+    item: CartItemI;
+}
+
+const CartItem = ({ item }: Props) => {
+    const dispatch = useAppDispatch();
+
+    const onDeleteFromCartHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        dispatch(removeItemFromCart(item.id));
+    };
+
+    const onIncreaseQuantity = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        dispatch(increaseItemQuantity(item.id));
+    };
+
+    const onDecreaseQuantity = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        dispatch(decreaseItemQuantity(item.id));
+    };
+
     return (
         <div className={styles.cartItem}>
             <div className={styles.cartItemImage}>
@@ -11,15 +39,27 @@ const CartItem = () => {
                 />
             </div>
             <div className={styles.cartItemInfo}>
-                <h4 className={styles.cartItemTitle}>Big Fat Burger</h4>
-                <p className={styles.cartItemPrice}>Price: 888</p>
+                <h4 className={styles.cartItemTitle}>{item.name}</h4>
+                <p className={styles.cartItemPrice}>Price: {item.totalPrice.toFixed(2)}</p>
                 <div className={styles.cartItemQuantity}>
-                    <Input id='cartQuantity' name='cartQuantity' type='number' min={0} />
+                    <button
+                        className={styles.cartItemQuantityControls}
+                        onClick={onDecreaseQuantity}
+                    >
+                        <span className='icon-remove-circle-filled'></span>
+                    </button>
+                    <div className={styles.cartItemQuantityText}>{item.quantity}</div>
+                    <button
+                        className={styles.cartItemQuantityControls}
+                        onClick={onIncreaseQuantity}
+                    >
+                        <span className='icon-add-circle-filled'></span>
+                    </button>
                 </div>
             </div>
-            <div className={styles.cartItemDelete}>
+            <button className={styles.cartItemDelete} onClick={onDeleteFromCartHandler}>
                 <span className='icon-close'></span>
-            </div>
+            </button>
         </div>
     );
 };

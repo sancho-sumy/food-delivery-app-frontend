@@ -1,10 +1,62 @@
 import { Button, Input } from '../../common';
-import styles from './Cart.module.scss';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { clearCart, selectCart } from '../../store/cartSlice';
 import { CartItem } from './CartItem';
 
+import { useNavigate } from 'react-router-dom';
+import { orderSchema } from '../../schemas/order';
+import { setAlert } from '../../store/alertSlice';
+import styles from './Cart.module.scss';
+
 const Cart = () => {
+    const cart = useAppSelector(selectCart);
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
+    const orderSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const target = e.currentTarget;
+
+        const name = target.orderName.value;
+        const email = target.orderEmail.value;
+        const phone = target.orderPhone.value;
+        const address = target.orderAddress.value;
+
+        if (!name || !email || !phone || !address) {
+            dispatch(setAlert({ messages: ['Please, fill all fields'], type: 'error' }));
+            return;
+        }
+
+        const validatedCourse = await orderSchema
+            .validate(
+                {
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    address: address,
+                    items: [...cart.items],
+                },
+                { abortEarly: false },
+            )
+            .catch((err) => {
+                const messages = err.inner.map((error: Error) => error.message);
+                dispatch(setAlert({ messages: [...messages], type: 'error' }));
+            });
+
+        if (validatedCourse) {
+            console.log('order palced', validatedCourse);
+            dispatch(clearCart());
+            dispatch(setAlert({ messages: ['Order have been placed!'], type: 'success' }));
+            navigate('/shop');
+        }
+    };
+
+    const cartItem = cart.items.map((item) => {
+        return <CartItem key={item.id} item={item} />;
+    });
+
     return (
-        <form name='order' className={styles.cart}>
+        <form name='order' className={styles.cart} onSubmit={orderSubmitHandler}>
             <div className={styles.cartOrderDetails}>
                 <div>
                     <Input
@@ -39,13 +91,12 @@ const Cart = () => {
                     />
                 </div>
             </div>
-            <div className={styles.cartOrderList}>
-                <CartItem />
-                <CartItem />
-            </div>
+            <div className={styles.cartOrderList}>{cartItem}</div>
             <div className={styles.cartFooter}>
-                <div className={styles.cartFooterTotalPrice}>Total price: 999</div>
-                <Button buttonText='Submit' size='big' design='danger' />
+                <div className={styles.cartFooterTotalPrice}>
+                    Total price: $ {cart.orderPrice.toFixed(2)}
+                </div>
+                <Button buttonText='Submit' size='big' design='danger' type='submit' />
             </div>
         </form>
     );
