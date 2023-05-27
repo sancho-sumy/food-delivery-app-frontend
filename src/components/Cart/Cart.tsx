@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { clearCart, selectCart } from '../../store/cartSlice';
 import { CartItem } from './CartItem';
 
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { orderSchema } from '../../schemas/order';
 import { setAlert } from '../../store/alertSlice';
 import styles from './Cart.module.scss';
@@ -91,7 +91,17 @@ const Cart = () => {
                     />
                 </div>
             </div>
-            <div className={styles.cartOrderList}>{cartItem}</div>
+            <div className={styles.cartOrderList}>
+                {cart.items.length < 1 && (
+                    <div className={styles.cartOrderListEmpty}>
+                        You haven&apos;t chosen anything yet.
+                        <Link to='/shop'>
+                            <Button buttonText='Go to shop!' />
+                        </Link>
+                    </div>
+                )}
+                {cartItem}
+            </div>
             <div className={styles.cartFooter}>
                 <div className={styles.cartFooterTotalPrice}>
                     Total price: $ {cart.orderPrice.toFixed(2)}

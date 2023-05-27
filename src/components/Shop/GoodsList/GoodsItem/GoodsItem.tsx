@@ -1,7 +1,9 @@
 import { Button } from '../../../../common';
 import { useAppDispatch } from '../../../../hooks';
 import { Goods } from '../../../../schemas';
+import { setAlert } from '../../../../store/alertSlice';
 import { addItemToCart } from '../../../../store/cartSlice';
+
 import styles from './GoodsItem.module.scss';
 
 interface Props {
@@ -22,6 +24,7 @@ const GoodsItem = ({ id, title, price, imageURL }: Props) => {
             imageURL: imageURL,
         };
         dispatch(addItemToCart(newItem));
+        dispatch(setAlert({ messages: [`${newItem.name} added to cart!`], type: 'success' }));
     };
 
     return (
