@@ -2,7 +2,7 @@ import { json } from 'react-router-dom';
 import { Order } from '../schemas/order';
 
 export const addOrderRequest = async (body: Order) => {
-    const response = await fetch(`http://localhost:7070/api/orders/add`, {
+    const response = await fetch(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/orders/add`, {
         method: 'POST',
         body: JSON.stringify(body),
         headers: {
