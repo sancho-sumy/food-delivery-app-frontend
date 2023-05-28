@@ -8,3 +8,5 @@
 - npm run preview
 
 Бекенд буде достпний за посилання: http://127.0.0.1:4173/
+
+Back-end знаходиться тут: https://github.com/sancho-sumy/food-delivery-app-backend
