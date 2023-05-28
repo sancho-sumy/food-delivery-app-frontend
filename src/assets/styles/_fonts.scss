@@ -1,0 +1,157 @@
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('assets/fonts/SourseSansPro/SourceSansPro-Light.woff2') format('woff2'),
+        url('assets/fonts/SourseSansPro/SourceSansPro-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: auto;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('assets/fonts/SourseSansPro/SourceSansPro-Regular.woff2') format('woff2'),
+        url('assets/fonts/SourseSansPro/SourceSansPro-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: auto;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('assets/fonts/SourseSansPro/SourceSansPro-SemiBold.woff2') format('woff2'),
+        url('assets/fonts/SourseSansPro/SourceSansPro-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: auto;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('assets/fonts/SourseSansPro/SourceSansPro-Bold.woff2') format('woff2'),
+        url('assets/fonts/SourseSansPro/SourceSansPro-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: auto;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('assets/fonts/SourseSansPro/SourceSansPro-Black.woff2') format('woff2'),
+        url('assets/fonts/SourseSansPro/SourceSansPro-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: auto;
+}
+
+@font-face {
+    font-family: '#{$icomoon-font-family}';
+    src: url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?qu6dx3');
+    src: url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?qu6dx3#iefix')
+            format('embedded-opentype'),
+        url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?qu6dx3') format('truetype'),
+        url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?qu6dx3') format('woff'),
+        url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?qu6dx3##{$icomoon-font-family}')
+            format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class^='icon-'],
+[class*=' icon-'] {
+    font-family: '#{$icomoon-font-family}' !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-add-circle-filled {
+    &:before {
+        content: $icon-add-circle-filled;
+    }
+}
+.icon-close-circle {
+    &:before {
+        content: $icon-close-circle;
+    }
+}
+.icon-remove-circle {
+    &:before {
+        content: $icon-remove-circle;
+    }
+}
+.icon-remove-circle-filled {
+    &:before {
+        content: $icon-remove-circle-filled;
+    }
+}
+.icon-shopping_cart {
+    &:before {
+        content: $icon-shopping_cart;
+    }
+}
+.icon-close {
+    &:before {
+        content: $icon-close;
+    }
+}
+.icon-add-circle {
+    &:before {
+        content: $icon-add-circle;
+    }
+}
+.icon-create {
+    &:before {
+        content: $icon-create;
+    }
+}
+.icon-search {
+    &:before {
+        content: $icon-search;
+    }
+}
+.icon-delete {
+    &:before {
+        content: $icon-delete;
+    }
+}
+.icon-calendar {
+    &:before {
+        content: $icon-calendar;
+    }
+}
+.icon-clock {
+    &:before {
+        content: $icon-clock;
+    }
+}
+.icon-user {
+    &:before {
+        content: $icon-user;
+    }
+}
+.icon-star-emprty {
+    &:before {
+        content: $icon-star-emprty;
+    }
+}
+.icon-star-full {
+    &:before {
+        content: $icon-star-full;
+    }
+}
+.icon-login {
+    &:before {
+        content: $icon-login;
+    }
+}
+.icon-logout {
+    &:before {
+        content: $icon-logout;
+    }
+}

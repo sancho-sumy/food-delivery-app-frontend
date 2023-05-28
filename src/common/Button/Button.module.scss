@@ -1,0 +1,56 @@
+@import '../../assets/styles/variables';
+
+.btn {
+    display: block;
+    height: 40px;
+    cursor: pointer;
+    border: none;
+    border-radius: 12px;
+    color: $secondary-font-color;
+    font-weight: 500;
+    font-size: 1rem;
+    &:hover {
+        opacity: 0.8;
+        transition: opacity 0.6s ease;
+    }
+}
+
+.primary {
+    background: $primary-button-color;
+}
+
+.success {
+    background: $success-button-color;
+}
+
+.danger {
+    background: $danger-button-color;
+}
+
+.btn:disabled {
+    opacity: 0.25;
+}
+
+.standard {
+    width: 120px;
+    padding: 0 20px;
+}
+
+.big {
+    width: 200px;
+    padding: 0 20px;
+}
+
+.medium {
+    width: 90px;
+    padding: 0 10px;
+}
+
+.small {
+    display: flex;
+    width: 40px;
+    min-width: 40px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25rem;
+}

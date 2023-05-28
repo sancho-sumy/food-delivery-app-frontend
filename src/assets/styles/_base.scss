@@ -1,0 +1,77 @@
+* {
+    scrollbar-gutter: stable;
+}
+
+body {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    font-family: $primary-font;
+    font-size: $font-st;
+    font-weight: $regular;
+    color: $primary-font-color-dark;
+    background-color: $primary-bg-color-light;
+}
+
+#root {
+    width: 100%;
+    height: calc(100% - $header-height);
+    padding-bottom: 20px;
+}
+
+main {
+    max-width: 1440px;
+    height: 100%;
+    padding: 0 40px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #212121;
+}
+
+input,
+textarea {
+    width: 100%;
+    min-height: 40px;
+    padding: 6px 12px;
+    border: 1px solid #bdbdbd;
+    outline: 0;
+    background-color: #ffffff;
+    border-radius: 8px;
+    color: #757575;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+}
+
+input:hover,
+textarea:hover {
+    border-color: $secondary-border-color;
+}
+
+input:active,
+input:focus,
+textarea:active,
+textarea:focus {
+    border: 1.5px solid $secondary-border-color;
+}
+
+a {
+    color: $primary-font-color-light;
+    opacity: 1;
+}
+
+.active button {
+    opacity: 1;
+    transition: opacity 0.6s ease-in-out;
+}
+
+a.active {
+    color: $primary-font-color-dark;
+    text-decoration: underline;
+    transition: all 0.5s ease;
+}
